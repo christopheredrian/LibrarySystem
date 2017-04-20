@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-xs-10 col-md-offset-2">
+            <div class="col-xs-10 col-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
                         {{--You are logged in!--}}
 
-                        <table id="studentsTable" class="table table-condendsed">
+                        <table id="studentsTable" class="table">
                             <thead>
                             <tr>
                                 <th>Id Number</th>
@@ -72,14 +72,28 @@
     </script>
 
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#studentsTable').DataTable();
+            $('#studentsTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+
         });
     </script>
 @endsection
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
 
 @endsection

@@ -30,6 +30,7 @@ class HomeController extends Controller
     {
         $category = Auth::user()->category;
         if ($category === 'admin') {
+            dd('?adnmin?');
             return view('home');
         } else {
             $user = User::find(Auth::user()->id);
@@ -37,12 +38,14 @@ class HomeController extends Controller
             if ($user->status === "in") {
                 // find student entry
                 $endTime = Carbon::now()->toTimeString();
-                DB::table('entries')
-                    ->where('user_id', '=', $user->id)
-                    ->orderBy('date', 'desc')
-                    ->first()
-                    ->update(['endTime' => $endTime]);
-
+//                DB::table('entries')
+//                    ->where('user_id', '=', $user->id)
+//                    ->orderBy('date', 'desc')
+//                    ->first()
+//                    ->update(['endTime' => $endTime]);
+                $entry = Entry::all()->where('endTime', null)->first();
+                $entry->endTime = $endTime;
+                $entry->save();
                 // check if in or out
                 $user->status = "out";
                 $user->save();

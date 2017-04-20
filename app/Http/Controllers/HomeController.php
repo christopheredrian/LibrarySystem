@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Entry;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -32,14 +35,37 @@ class HomeController extends Controller
             $user = User::find(Auth::user()->id);
             $student_msg = "";
             if ($user->status === "in") {
+                // find student entry
+                $endTime = Carbon::now()->toTimeString();
+                DB::table('entries')
+                    ->where('user_id', '=', $user->id)
+                    ->orderBy('date', 'desc')
+                    ->first()
+                    ->update(['endTime' => $endTime]);
+
                 // check if in or out
                 $user->status = "out";
                 $user->save();
                 $student_msg = "Student Signed out!";
+
+
             } else {
+                // create new entry
+                $entry = new Entry;
+                $currentDate = Carbon::now();
+
+                // set new entry with data
+                $entry->user_id = $user->id;
+                $entry->date = $currentDate->toDateString();
+                $entry->startTime = $currentDate->toTimeString();
+                $entry->endTime = null;
+                $entry->save();
+
                 $user->status = "in";
                 $user->save();
                 $student_msg = "Student Signed in!";
+
+
             }
 
             Auth::logout();

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('course');
             $table->string('yearLevel');
             $table->enum('status', ['in', 'out']);
+            $table->enum('category', ['admin', 'student']);
             $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();

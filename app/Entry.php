@@ -14,10 +14,10 @@ class Entry extends Model
     protected $table = 'entries';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -27,5 +27,9 @@ class Entry extends Model
      */
     protected $fillable = ['date', 'startTime', 'endTime'];
 
-    
+    public function getUser()
+    {
+        return User::find($this->user_id);
+    }
+
 }

@@ -30,7 +30,9 @@ class HomeController extends Controller
     {
         $category = Auth::user()->category;
         if ($category === 'admin') {
-            return view('home');
+            return view('home', [
+                'entries' => Entry::all()
+            ]);
         } else {
             $user = User::find(Auth::user()->id);
             $student_msg = "";
@@ -71,8 +73,7 @@ class HomeController extends Controller
             }
 
             Auth::logout();
-            return view('auth.login')
-                ->with('student_msg', $student_msg);
+            return view('auth.login', ['student_msg' => $student_msg]);
 
         }
 

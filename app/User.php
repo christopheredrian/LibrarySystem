@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getEntries()
+    {
+        return Entry::all()->where('user_id', $this->id);
+    }
 }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-xs-10 col-offset-1">
+            <div class="col-xs-12 col-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
 
@@ -64,21 +64,24 @@
 @endsection
 
 @section('js')
-    <script
-            src="https://code.jquery.com/jquery-2.2.4.min.js"
-            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-            crossorigin="anonymous">
+    {{--<script--}}
+    {{--src="https://code.jquery.com/jquery-2.2.4.min.js"--}}
+    {{--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="--}}
+    {{--crossorigin="anonymous">--}}
 
-    </script>
+    {{--</script>--}}
 
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-    <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+    {{--<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>--}}
+    {{--<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>--}}
+    {{--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>--}}
+    {{--<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>--}}
+    {{--<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>--}}
+    {{--<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>--}}
+    {{--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>--}}
+    {{--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>--}}
+
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bs-3.3.7/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#studentsTable').DataTable({
@@ -93,7 +96,9 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
-
+    {{--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">--}}
+    {{--<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">--}}
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs-3.3.7/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.css"/>
+s
 @endsection

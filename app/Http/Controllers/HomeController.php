@@ -31,7 +31,7 @@ class HomeController extends Controller
         $category = Auth::user()->category;
         if ($category === 'admin') {
             return view('admin.dashboard', [
-                'entries' => Entry::all()
+                'entries' => Entry::orderBy('id','desc')->get()
             ]);
         } else {
             $user = User::find(Auth::user()->id);

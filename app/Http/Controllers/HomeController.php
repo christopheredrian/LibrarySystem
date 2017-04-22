@@ -30,7 +30,7 @@ class HomeController extends Controller
     {
         $category = Auth::user()->category;
         if ($category === 'admin') {
-            return view('home', [
+            return view('admin.dashboard', [
                 'entries' => Entry::all()
             ]);
         } else {

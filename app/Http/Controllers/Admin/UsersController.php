@@ -23,15 +23,14 @@ class UsersController extends Controller
 
         if (!empty($keyword)) {
             $users = User::where('firstName', 'LIKE', "%$keyword%")
-				->orWhere('lastName', 'LIKE', "%$keyword%")
-				->orWhere('middleName', 'LIKE', "%$keyword%")
-				->orWhere('course', 'LIKE', "%$keyword%")
-				->orWhere('yearLevel', 'LIKE', "%$keyword%")
-				->orWhere('password', 'LIKE', "%$keyword%")
-				->orWhere('category', 'LIKE', "%$keyword%")
-				->orWhere('status', 'LIKE', "%$keyword%")
-				->orWhere('username', 'LIKE', "%$keyword%")
-				
+                ->orWhere('lastName', 'LIKE', "%$keyword%")
+                ->orWhere('middleName', 'LIKE', "%$keyword%")
+                ->orWhere('course', 'LIKE', "%$keyword%")
+                ->orWhere('yearLevel', 'LIKE', "%$keyword%")
+                ->orWhere('password', 'LIKE', "%$keyword%")
+                ->orWhere('category', 'LIKE', "%$keyword%")
+                ->orWhere('status', 'LIKE', "%$keyword%")
+                ->orWhere('username', 'LIKE', "%$keyword%")
                 ->paginate($perPage);
         } else {
             $users = User::paginate($perPage);
@@ -59,12 +58,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+        $requestData['password'] = bcrypt($request->get('password'));
         User::create($requestData);
 
         Session::flash('flash_message', 'User added!');
+
 
         return redirect('admin/users');
     }
@@ -72,7 +72,7 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\View\View
      */
@@ -86,7 +86,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\View\View
      */
@@ -100,16 +100,17 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update($id, Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+        $requestData['password'] = bcrypt($request->get('password'));
+
         $user = User::findOrFail($id);
         $user->update($requestData);
 
@@ -121,7 +122,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

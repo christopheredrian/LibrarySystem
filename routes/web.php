@@ -30,8 +30,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('admin/visitors', 'Admin\\VisitorsController');
 });
 
-//Route::post('admin/visitors/create');
-//Route::resource('admin/visitors', 'Admin\\VisitorsController');
 Route::resource('admin/visitors', 'Admin\\VisitorsController', ['only' => [
     'store'
 ]]);

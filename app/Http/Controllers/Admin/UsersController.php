@@ -16,6 +16,19 @@ class UsersController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    private function validateForm($request)
+    {
+        $this->validate($request, [
+            'firstName' => 'string|required',
+            'lastName' => 'string|required',
+            'status' => 'required',
+            'category' => 'required',
+            'username' => 'required|unique:users',
+            'password' => 'string|required',
+        ]);
+    }
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -58,7 +71,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->validateForm($request);
         $requestData = $request->all();
         $requestData['password'] = bcrypt($request->get('password'));
         User::create($requestData);
@@ -107,7 +120,7 @@ class UsersController extends Controller
      */
     public function update($id, Request $request)
     {
-
+        $this->validateForm($request);
         $requestData = $request->all();
         $requestData['password'] = bcrypt($request->get('password'));
 

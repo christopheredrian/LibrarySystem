@@ -37,14 +37,14 @@
     <div class="form-group {{ $errors->has('course') ? 'has-error' : ''}}">
         {!! Form::label('course', 'Course', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-            {!! Form::select('course', ['BSIT', 'BSCS', 'BSM', 'BSN', 'BALA', 'BSLIS'], null, ['class' => 'form-control']) !!}
+            {!! Form::select('course', ['BSIT' => 'BSIT', 'BSCS' => 'BSCS', 'BSM' => 'BSM', 'BSN' => 'BSN', 'BALA' => 'BALA', 'BSLIS' => 'BSLIS'], null, ['class' => 'form-control']) !!}
             {!! $errors->first('course', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
     <div class="form-group {{ $errors->has('yearLevel') ? 'has-error' : ''}}">
         {!! Form::label('yearLevel', 'Yearlevel', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-            {!! Form::select('yearLevel', ['1st year', '2nd year', '3rd year', '4th year'], null, ['class' => 'form-control']) !!}
+            {!! Form::select('yearLevel', ['1st year' => '1st year', '2nd year' => '2nd year', '3rd year' => '3rd year', '4th year' => '4th year'], null, ['class' => 'form-control']) !!}
             {!! $errors->first('yearLevel', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
@@ -69,7 +69,7 @@
 <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
     {!! Form::label('status', 'Status', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('status', ['in', 'out'], null, ['class' => 'form-control']) !!}
+        {!! Form::select('status', ['in' => 'in', 'out' => 'out'], null, ['class' => 'form-control']) !!}
         {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

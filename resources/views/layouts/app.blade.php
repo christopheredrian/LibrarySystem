@@ -12,9 +12,33 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('css/newstrap.css') }}" rel="stylesheet">--}}
+
     <style>
-        body{
+        body {
             padding-top: 15vh;
+        }
+
+        nav.navbar.navbar-default.navbar-fixed-top {
+            background-color: #2c8d01 !important;
+        }
+
+        .navbar-default .navbar-nav > li > a, .navbar-default .navbar-text {
+            color: white;
+        }
+
+        .navbar-default .navbar-brand {
+            color: white !important;
+        }
+
+        .panel-default > .panel-heading {
+            color: white;
+            background-color: #4F463B;
+            border-color: #d3e0e9;
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: white;
         }
     </style>
 @yield('css')
@@ -72,25 +96,25 @@
                             </form>
                         </li>
                         {{--<li class="dropdown">--}}
-                            {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--}}
-                               {{--aria-expanded="false">--}}
-                                {{--{{ Auth::user()->username }} <span class="caret"></span>--}}
-                            {{--</a>--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--}}
+                        {{--aria-expanded="false">--}}
+                        {{--{{ Auth::user()->username }} <span class="caret"></span>--}}
+                        {{--</a>--}}
 
-                            {{--<ul class="dropdown-menu" role="menu">--}}
-                                {{--<li>--}}
-                                    {{--<a href="{{ route('logout') }}"--}}
-                                       {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-                                        {{--Logout--}}
-                                    {{--</a>--}}
+                        {{--<ul class="dropdown-menu" role="menu">--}}
+                        {{--<li>--}}
+                        {{--<a href="{{ route('logout') }}"--}}
+                        {{--onclick="event.preventDefault();--}}
+                        {{--document.getElementById('logout-form').submit();">--}}
+                        {{--Logout--}}
+                        {{--</a>--}}
 
-                                    {{--<form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
-                                          {{--style="display: none;">--}}
-                                        {{--{{ csrf_field() }}--}}
-                                    {{--</form>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
+                        {{--<form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
+                        {{--style="display: none;">--}}
+                        {{--{{ csrf_field() }}--}}
+                        {{--</form>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
                         {{--</li>--}}
                     @endif
                 </ul>
@@ -103,6 +127,8 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/bootstrap.js') }}"></script>--}}
+
 @yield('js')
 </body>
 </html>

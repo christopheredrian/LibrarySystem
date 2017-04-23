@@ -21,6 +21,11 @@
                         Entries
                     </a>
                 </li>
+                <li role="presentation">
+                    <a href="{{ url('/admin/visitors') }}">
+                        Visitors
+                    </a>
+                </li>
 
             </ul>
         </div>

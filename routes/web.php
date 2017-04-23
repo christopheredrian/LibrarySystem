@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/admin', 'HomeController@index');
+Route::get('/visitor', function(){
+    return view('visitors.register');
+});
 
 Route::resource('admin/entries', 'Admin\\EntriesController');
 Route::resource('admin/users', 'Admin\\UsersController');
+Route::resource('admin/visitors', 'Admin\\VisitorsController');

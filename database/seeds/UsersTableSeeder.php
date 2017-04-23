@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'course' => $faker->randomElement(['BSIT', 'BSCS', 'BSM', 'BSN', 'BALA', 'BSLIS']),
             'yearLevel' => $faker->randomElement(['1st year', '2nd year', '3rd year', '4th year']),
             'password' => bcrypt('adminadmin'),
-            'category' => $faker->randomElement(['student', 'admin']),
+            'category' => 'admin',
             'status' => $faker->randomElement(['in', 'out']),
             'username' => 'admin'
         ]);
@@ -32,11 +32,11 @@ class UsersTableSeeder extends Seeder
             'yearLevel' => $faker->randomElement(['1st year', '2nd year', '3rd year', '4th year']),
             'password' => bcrypt('studentstudent'),
             'category' => 'student',
-            'status' => $faker->randomElement(['in', 'out']),
+            'status' => 'out',
             'username' => 'student'
         ]);
 
-        $limit = 50;
+        $limit = 25;
         for ($i = 0; $i < $limit; $i++) {
             DB::table('users')->insert([ //,
                 'firstName' => $faker->firstName,
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
                 'yearLevel' => $faker->randomElement(['1st year', '2nd year', '3rd year', '4th year']),
                 'password' => bcrypt('password'),
                 'category' => 'admin',
-                'status' => $faker->randomElement(['in', 'out']),
+                'status' => 'out',
                 'username' => $faker->unique()->numerify('#######')
             ]);
         }

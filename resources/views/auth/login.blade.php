@@ -56,12 +56,17 @@
                                         Login
                                     </button>
 
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Forgot Your Password?
-                                    </a>
+                                    {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
+                                    {{--Forgot Your Password?--}}
+                                    {{--</a>--}}
+
                                 </div>
                             </div>
+
                         </form>
+                        <button type="submit" class="btn btn-success" style="float: right" id="visitorBtn">
+                            Log in as Visitor
+                        </button>
                     </div>
                 </div>
             </div>
@@ -72,4 +77,18 @@
             alert('{{ $student_msg }}');
         </script>
     @endif
+    <script>
+
+    </script>
+@endsection
+
+@section('js')
+    <script>
+
+        (function () {
+            document.getElementById('visitorBtn').onclick = function () {
+                window.location.href = "/visitor";
+            }
+        })();
+    </script>
 @endsection

@@ -8,12 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Library Attendance</title>
+    <title>CVCITC Library Attendance</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    {{--<link href="{{ asset('css/newstrap.css') }}" rel="stylesheet">--}}
 
+
+    @yield('css')
     <style>
         body {
             padding-top: 15vh;
@@ -40,9 +41,12 @@
         .navbar-default .navbar-toggle .icon-bar {
             background-color: white;
         }
+
+        button.navbar-toggle.collapsed:hover {
+            background-color: #4F463B;
+        }
     </style>
-@yield('css')
-<!-- Scripts -->
+    <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -66,7 +70,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Library Attendance
+                    CVCITC Library Attendance
                 </a>
             </div>
 
@@ -127,8 +131,9 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
-{{--<script src="{{ asset('js/bootstrap.js') }}"></script>--}}
 
 @yield('js')
+
+
 </body>
 </html>

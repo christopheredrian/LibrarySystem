@@ -5,10 +5,10 @@
 
         <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-heading">Create New Entry</div>
+                <div class="panel-heading">Visitor Registration</div>
                 <div class="panel-body">
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
 
                     @if ($errors->any())
                         <ul class="alert alert-danger">
@@ -18,7 +18,8 @@
                         </ul>
                     @endif
 
-                    {!! Form::open(['url' => '/admin/entries', 'class' => 'form-horizontal', 'files' => true]) !!}
+
+                    {!! Form::open(['url' => '/admin/visitors', 'class' => 'form-horizontal', 'files' => true]) !!}
 
                     @include ('admin.visitors.form')
 

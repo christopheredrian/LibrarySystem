@@ -19,10 +19,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/admin', 'HomeController@index');
-Route::get('/visitor', function(){
+Route::get('/visitor', function () {
     return view('visitors.register');
 });
 
-Route::resource('admin/entries', 'Admin\\EntriesController');
-Route::resource('admin/users', 'Admin\\UsersController');
-Route::resource('admin/visitors', 'Admin\\VisitorsController');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('admin/entries', 'Admin\\EntriesController');
+    Route::resource('admin/users', 'Admin\\UsersController');
+    Route::resource('admin/visitors', 'Admin\\VisitorsController');
+});
+
+//Route::post('admin/visitors/create');
+//Route::resource('admin/visitors', 'Admin\\VisitorsController');
+Route::resource('admin/visitors', 'Admin\\VisitorsController', ['only' => [
+    'store'
+]]);

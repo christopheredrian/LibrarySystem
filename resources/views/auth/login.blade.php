@@ -1,7 +1,29 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        .row.logo-row {
+            text-align: center !important;
+        }
+
+        .row.logo-row h1 {
+            text-transform: uppercase;
+        }
+        .row.logo-row img {
+            margin: -40px 0 -30px 0;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container">
+
+        <div class="row logo-row">
+            <img src="/images/logo.png" alt="CVCITC logo">
+            <h1>cvcitc</h1>
+            <p>Cagayan Valley Computer and Information Technology College, INC.</p>
+        </div>
+
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">

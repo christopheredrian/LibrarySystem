@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('middleName')->nullable();
             $table->string('course')->nullable();
             $table->string('yearLevel')->nullable();
-            $table->string('faculty')->nullable();
+            $table->string('department')->nullable();
             $table->enum('status', ['in', 'out']);
             $table->enum('category', ['admin', 'student', 'faculty']);
             $table->string('username')->unique();

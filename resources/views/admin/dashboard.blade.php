@@ -14,7 +14,7 @@
                         {{--</div>--}}
                         {{--You are logged in!--}}
 
-                        <table id="studentsTable" class="table">
+                        <table id="studentsTable" class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Id Number</th>
@@ -69,7 +69,7 @@
                     <div class="panel-heading">Signed In Students</div>
 
                     <div class="panel-body">
-                        <table id="signedInTable" class="table">
+                        <table id="signedInTable" class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Id Number</th>

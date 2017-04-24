@@ -22,13 +22,13 @@ class EntriesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $entries = Entry::where('date', 'LIKE', "%$keyword%")
+            $entries = Entry::orderBy('date', 'desc')->where('date', 'LIKE', "%$keyword%")
 				->orWhere('startTime', 'LIKE', "%$keyword%")
 				->orWhere('endTime', 'LIKE', "%$keyword%")
 				
                 ->paginate($perPage);
         } else {
-            $entries = Entry::paginate($perPage);
+            $entries = Entry::orderBy('date', 'desc')->paginate($perPage);
         }
 
         return view('admin.entries.index', compact('entries'));

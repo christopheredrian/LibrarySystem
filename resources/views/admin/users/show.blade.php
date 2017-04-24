@@ -88,18 +88,84 @@
                                 </tr>
                                 <tr>
                                     <th> Recent Visit</th>
-                                    <td> {{ $user->getEntries()->first()->date }} </td>
+                                    <td> {{ $user->getEntries()->last()->date }} </td>
                                 </tr>
                                 <tr>
-                                    <th>  </th>
-                                    <td> {{ $user->getEntries()->first()->startTime }} </td>
+                                    <th></th>
+                                    <td> {{ $user->getEntries()->last()->startTime }} </td>
                                 </tr>
                                 <tr>
-                                    <th>  </th>
-                                    <td> {{ $user->getEntries()->first()->endTime }} </td>
+                                    <th></th>
+                                    <td> {{ $user->getEntries()->last()->endTime }} </td>
                                 </tr>
                                 </tbody>
                             </table>
+
+                            <div id="stocks-chart"></div>
+
+                            <?php
+
+                            use Khill\Lavacharts\Lavacharts;
+
+                            $lava = new Lavacharts; // See note below for Laravel
+
+                            $sales = $lava->DataTable();
+
+                            $sales->addDateColumn('Date')
+                                ->addNumberColumn('Orders');
+                            $currentDate = new DateTime();
+                            $days = [];
+
+                            foreach ($user->getEntries() as $entry) {
+                                $temp = new DateTime($entry->date);
+                                if ($currentDate->format('y') === $temp->format('y')) {
+                                    $days[$temp->format('m')] = $temp->format('d');
+                                }
+                            }
+                            //                            dd($days);
+                            //                            foreach (range(2, 5) as $month) {
+                            //                                for ($a = 0; $a < 20; $a++) {
+                            //                                    $day = rand(1, 30);
+                            //                                    $sales->addRow(["$year-${month}-${day}", rand(0, 100)]);
+                            //                                }
+                            //                            }
+                            foreach ($user->getEntries() as $entry) {
+                                $temp = new DateTime($entry->date);
+                                if ($currentDate->format('y') === $temp->format('y')) {
+                                    $year = $temp->format('y');
+                                    $month = $temp->format('m');
+                                    $day = $temp->format('d');
+                                    $sales->addRow(["${year}-${month}-${day}", rand(0, 100)]);
+                                }
+
+                            }
+
+                            $lava->CalendarChart('Sales', $sales, [
+                                'title' => 'Library Attendance',
+                                'unusedMonthOutlineColor' => [
+                                    'stroke' => '#ECECEC',
+                                    'strokeOpacity' => 0.75,
+                                    'strokeWidth' => 1
+                                ],
+                                'dayOfWeekLabel' => [
+                                    'color' => '#4f5b0d',
+                                    'fontSize' => 16,
+                                    'italic' => true
+                                ],
+                                'noDataPattern' => [
+                                    'color' => '#DDD',
+                                    'backgroundColor' => '#11FFFF'
+                                ],
+                                'colorAxis' => [
+                                    'values' => [0, 100],
+                                    'colors' => ['black', 'green']
+                                ]
+                            ]);
+
+                            ?>
+                            <div id="sales_div"></div>
+                            // With the lava object
+                            <?= $lava->render('CalendarChart', 'Sales', 'sales_div') ?>
                         </div>
                         <h2>Entries</h2>
                         <table class="table table-responsive">

@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     public function getEntries()
     {
-        return Entry::all()->where('user_id', $this->id);
+        return Entry::orderBy('date', 'desc')->where('user_id', $this->id)->get();
     }
 }

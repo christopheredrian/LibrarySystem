@@ -64,18 +64,17 @@
 
                 <div class="panel panel-default">
 
-                    <div class="panel-heading">Signed In Students</div>
+                    <div class="panel-heading">Signed In Users</div>
 
                     <div class="panel-body">
                         <table id="signedInTable" class="table table-striped">
                             <thead>
                             <tr>
                                 <th>Id Number</th>
+                                <th>Role</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Middle Name</th>
-                                <th>Course</th>
-                                <th>Year Level</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
 
@@ -84,11 +83,10 @@
                             <tfoot>
                             <tr>
                                 <th>Id Number</th>
+                                <th>Role</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Middle Name</th>
-                                <th>Course</th>
-                                <th>Year Level</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
 
@@ -100,11 +98,10 @@
                                 @if($entry->endTime === null)
                                     <tr>
                                         <td>{{ $currentUser->username }}</td>
+                                        <td>{{ $currentUser->category }}</td>
                                         <td>{{ $currentUser->firstName }}</td>
                                         <td>{{ $currentUser->lastName }}</td>
                                         <td>{{ $currentUser->middleName }}</td>
-                                        <td>{{ $currentUser->course }}</td>
-                                        <td>{{ $currentUser->yearLevel }}</td>
                                         <td>{{ $entry->date }}</td>
                                         <td>{{ $entry->startTime }}</td>
                                     </tr>
@@ -114,7 +111,41 @@
                         </table>
                     </div>
                 </div>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">Visitors List</div>
+
+                    <div class="panel-body">
+                        <table id="visitorTable" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Purpose</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Purpose</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            @foreach(\App\Visitor::orderBy('id', 'desc')->get() as $visitor)
+                                <?php $currentUser = $entry->getUser() ?>
+                                    <tr>
+                                        <td>{{ $visitor->firstName}}</td>
+                                        <td>{{ $visitor->lastName }}</td>
+                                        <td>{{ $visitor->purpose }}</td>
+                                    </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 @endsection
@@ -146,6 +177,12 @@
                 ]
             });
             $('#signedInTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+            $('#visitorTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'

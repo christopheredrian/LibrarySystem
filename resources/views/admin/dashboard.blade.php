@@ -7,22 +7,21 @@
 
             <div class="col-md-10">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
+                    <div class="panel-heading">Entries Report</div>
 
                     <div class="panel-body">
                         {{--<div id="chartContainer" style="height: 300px; width: 100%;">--}}
                         {{--</div>--}}
                         {{--You are logged in!--}}
 
-                        <table id="studentsTable" class="table table-striped">
+                        <table id="studentsTable" class="table table-responsive table-hover">
                             <thead>
                             <tr>
                                 <th>Id Number</th>
+                                <th>Role</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Middle Name</th>
-                                <th>Course</th>
-                                <th>Year Level</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
@@ -32,11 +31,10 @@
                             <tfoot>
                             <tr>
                                 <th>Id Number</th>
+                                <th>Role</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Middle Name</th>
-                                <th>Course</th>
-                                <th>Year Level</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
@@ -46,13 +44,13 @@
                             <tbody>
                             @foreach($entries as $entry)
                                 <?php $currentUser = $entry->getUser() ?>
-                                <tr>
+                                <tr class="clickable-row" style="cursor: pointer"
+                                    data-href="admin/users/{{ $currentUser->id }}">
                                     <td>{{ $currentUser->username }}</td>
+                                    <td>{{ $currentUser->category }}</td>
                                     <td>{{ $currentUser->firstName }}</td>
                                     <td>{{ $currentUser->lastName }}</td>
                                     <td>{{ $currentUser->middleName }}</td>
-                                    <td>{{ $currentUser->course }}</td>
-                                    <td>{{ $currentUser->yearLevel }}</td>
                                     <td>{{ $entry->date }}</td>
                                     <td>{{ $entry->startTime }}</td>
                                     <td>{{ $entry->endTime }}</td>
@@ -156,41 +154,10 @@
         });
     </script>
     <script>
-        window.onload = function () {
-            var chart = new CanvasJS.Chart("chartContainer",
-                {
-                    title: {
-                        text: "Simple Date-Time Chart"
-                    },
-                    axisX: {
-                        title: "timeline",
-                        gridThickness: 2
-                    },
-                    axisY: {
-                        title: "Downloads"
-                    },
-                    data: [
-                        {
-                            type: "area",
-                            dataPoints: [//array
-                                {x: new Date(2012, 01, 1), y: 26},
-                                {x: new Date(2012, 01, 3), y: 38},
-                                {x: new Date(2012, 01, 5), y: 43},
-                                {x: new Date(2012, 01, 7), y: 29},
-                                {x: new Date(2012, 01, 11), y: 41},
-                                {x: new Date(2012, 01, 13), y: 54},
-                                {x: new Date(2012, 01, 20), y: 66},
-                                {x: new Date(2012, 01, 21), y: 60},
-                                {x: new Date(2012, 01, 25), y: 53},
-                                {x: new Date(2012, 01, 27), y: 60}
-
-                            ]
-                        }
-                    ]
-                });
-
-            chart.render();
-        }
+        // click event for table rows
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href");
+        });
     </script>
 @endsection
 

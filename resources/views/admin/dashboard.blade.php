@@ -34,7 +34,7 @@
                         }
 
                         $lava->LineChart('Temps', $temperatures, [
-                            'title' => 'Weather in October'
+                            'title' => 'Attendance Frequency'
                         ]);
                         ?>
                         <div id="temps_div"></div>

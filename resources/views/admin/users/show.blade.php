@@ -135,7 +135,7 @@
                                     $year = $temp->format('y');
                                     $month = $temp->format('m');
                                     $day = $temp->format('d');
-                                    $sales->addRow(["${year}-${month}-${day}", rand(0, 100)]);
+                                    $sales->addRow(["${year}-${month}-${day}", 1]);
                                 }
 
                             }
@@ -163,10 +163,9 @@
                             ]);
 
                             ?>
-                            <div id="sales_div"></div>
-                            // With the lava object
                             <?= $lava->render('CalendarChart', 'Sales', 'sales_div') ?>
                         </div>
+                        <div id="sales_div"></div>
                         <h2>Entries</h2>
                         <table class="table table-responsive">
                             <tbody>

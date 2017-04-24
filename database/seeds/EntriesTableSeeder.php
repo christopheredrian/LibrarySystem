@@ -13,7 +13,7 @@ class EntriesTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 35;
+        $limit = 88;
         for ($i = 0; $i < $limit; $i++) {
             $dateIn = $faker->dateTimeThisDecade();
             $numOfHours = $faker->numberBetween(1, 8);

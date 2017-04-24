@@ -7,7 +7,42 @@
 
             <div class="col-md-10">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Entries Report</div>
+                    <div class="panel-heading">
+                        Statistics
+                    </div>
+                    <div class="panel-body">
+                        <h2>Attendance Frequencies</h2>
+                        <?php
+
+                        use Khill\Lavacharts\Lavacharts;
+
+                        $lava = new Lavacharts; // See note below for Laravel
+
+                        $temperatures = $lava->DataTable();
+
+                        $temperatures->addDateColumn('Date')
+                            ->addNumberColumn('Frequency');
+                        //                            ->addRow(['2014-10-1', 67])
+                        //                            ->addRow(['2014-10-2', 67])
+                        //                            ->addRow(['2014-11-1', 104])
+                        $dates = \Illuminate\Support\Facades\DB::table('entries')
+                            ->select(\Illuminate\Support\Facades\DB::raw('date, count(date) as count'))
+                            ->groupBy('date')->get();
+//                        dd($dates[0]);
+                        foreach ($dates as $date) {
+                            $temperatures->addRow([$date->date, $date->count]);
+                        }
+
+                        $lava->LineChart('Temps', $temperatures, [
+                            'title' => 'Weather in October'
+                        ]);
+                        ?>
+                        <div id="temps_div"></div>
+                        <?= $lava->render('LineChart', 'Temps', 'temps_div') ?>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"> Entries Report</div>
 
                     <div class="panel-body">
                         {{--<div id="chartContainer" style="height: 300px; width: 100%;">--}}
@@ -134,11 +169,11 @@
                             <tbody>
                             @foreach(\App\Visitor::orderBy('id', 'desc')->get() as $visitor)
                                 <?php $currentUser = $entry->getUser() ?>
-                                    <tr>
-                                        <td>{{ $visitor->firstName}}</td>
-                                        <td>{{ $visitor->lastName }}</td>
-                                        <td>{{ $visitor->purpose }}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $visitor->firstName}}</td>
+                                    <td>{{ $visitor->lastName }}</td>
+                                    <td>{{ $visitor->purpose }}</td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

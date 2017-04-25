@@ -86,18 +86,36 @@
                                     <th> Total Entries</th>
                                     <td> {{ count($user->getEntries()) }} </td>
                                 </tr>
-                                <tr>
-                                    <th> Recent Visit</th>
-                                    <td> {{ $user->getEntries()->last()->date }} </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td> {{ $user->getEntries()->last()->startTime }} </td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td> {{ $user->getEntries()->last()->endTime }} </td>
-                                </tr>
+                                @if($user->getEntries()->count() > 0)
+                                    <tr>
+                                        <th> Recent Visit</th>
+
+                                        <td> {{ $user->getEntries()->last()->date }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td> {{ $user->getEntries()->last()->startTime }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td> {{ $user->getEntries()->last()->endTime }} </td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <th> Recent Visit</th>
+
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>-</td>
+                                    </tr>
+                                @endif
+
                                 </tbody>
                             </table>
 

@@ -28,7 +28,7 @@
                         $dates = \Illuminate\Support\Facades\DB::table('entries')
                             ->select(\Illuminate\Support\Facades\DB::raw('date, count(date) as count'))
                             ->groupBy('date')->get();
-//                        dd($dates[0]);
+                        //                        dd($dates[0]);
                         foreach ($dates as $date) {
                             $temperatures->addRow([$date->date, $date->count]);
                         }
@@ -80,7 +80,7 @@
                             @foreach($entries as $entry)
                                 <?php $currentUser = $entry->getUser() ?>
                                 <tr class="clickable-row" style="cursor: pointer"
-                                    data-href="admin/users/{{ $currentUser->id }}">
+                                    data-href="/admin/users/{{ $currentUser->id }}">
                                     <td>{{ $currentUser->username }}</td>
                                     <td>{{ $currentUser->category }}</td>
                                     <td>{{ $currentUser->firstName }}</td>
@@ -201,8 +201,10 @@
     {{--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>--}}
     {{--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>--}}
 
-    <script type="text/javascript"
-            src="https://cdn.datatables.net/v/bs-3.3.7/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
+    {{--<script type="text/javascript"--}}
+        {{--src="https://cdn.datatables.net/v/bs-3.3.7/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.js"></script>--}}
+    {{--<script>--}}
+    <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#studentsTable').DataTable({
@@ -236,8 +238,9 @@
 @section('css')
     {{--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">--}}
     {{--<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">--}}
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/v/bs-3.3.7/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.css"/>
+    {{--<link rel="stylesheet" type="text/css"--}}
+          {{--href="https://cdn.datatables.net/v/bs-3.3.7/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.css"/>--}}
+    <link rel="stylesheet" href=" {{ asset('DataTables/datatables.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 @endsection
